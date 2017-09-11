@@ -12,7 +12,9 @@ export default (state=null, action) => {
       validateProfileCreate(payload);
       return payload;
     case 'PROFILE_UPDATE':
-      return {...state, payload}
+      throw new Error('USAGE ERROR: can not update when profile is null')
+      validateProfileCreate(payload)
+      return {...state, ...payload}
     case 'LOGOUT':
       return null
     default:
