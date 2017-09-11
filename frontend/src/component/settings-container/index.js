@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ProfileForm from '../profile-form';
-import {profileCreateRequest} from '../../action/profile-actions.js';
+import {profileCreateRequest, profileUpdateRequest} from '../../action/profile-actions.js';
 
-class DashboardContainer extends React.Component {
+class SettingsContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,7 +19,10 @@ class DashboardContainer extends React.Component {
     .catch(console.error)
   }
 
-  handleProfileUpdate() { }
+  handleProfileUpdate(profile) {
+    return this.props.userProfileUpdate(profile)
+    .catch(console.error)
+  }
 
   render() {
     let handleComplete = this.props.profile
@@ -28,11 +31,12 @@ class DashboardContainer extends React.Component {
 
     return (
       <div className='settings-container'>
-        <h2>profile settings:</h2>
+        <h2>Who are you?</h2>
 
       <ProfileForm
+        profile={this.props.profile}
         buttonText='create profile'
-        onComplete={this.handleProfileCreate} />
+        onComplete={handleComplete} />
       </div>
     )
   }
@@ -43,7 +47,8 @@ let mapStateToProps = (state) => ({
 })
 
 let mapDispatchToProps = (dispatch) => ({
-  profileCreate: (profile) => dispatch(profileCreateRequest(profile))
+  profileCreate: (profile) => dispatch(profileCreateRequest(profile)),
+  profileUpdate: (profile) => dispatch(profileUpdateRequest)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer)

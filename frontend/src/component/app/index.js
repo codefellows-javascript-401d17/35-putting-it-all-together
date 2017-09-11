@@ -21,7 +21,7 @@ class App extends React.Component {
               </nav>
             </header>
             <Route path='/welcome/:auth' component={LandingContainer} />
-            <Route exact path='/settings' component={DashboardContainer} />
+            <Route exact path='/settings' component={SettingsContainer} />
           </section>
         </BrowserRouter>
       </div>
