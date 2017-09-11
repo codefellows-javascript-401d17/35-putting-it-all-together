@@ -2,22 +2,22 @@ import superagent from 'superagent'
 
 // sync actions
 export const photosSet = (photos) => ({
-  type: 'USER_PHOTOS_SET',
+  type: 'PHOTOS_SET',
   payload: photos,
 })
 
 export const photoCreate = (photo) => ({
-  type: 'USER_PHOTO_CREATE',
+  type: 'PHOTO_CREATE',
   payload: photo,
 })
 
 export const photoUpdate = (photo) => ({
-  type: 'USER_PHOTO_UPDATE',
+  type: 'PHOTO_UPDATE',
   payload: photo,
 })
 
 export const photoDelete = (photo) => ({
-  type: 'USER_PHOTO_DELETE',
+  type: 'PHOTO_DELETE',
   payload: photo,
 })
 

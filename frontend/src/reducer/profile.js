@@ -10,7 +10,7 @@ export default (state=null, action) => {
   switch(type) {
     case 'PROFILE_CREATE':
       validateProfileCreate(payload);
-      return payload;
+      return payload
     case 'PROFILE_UPDATE':
       throw new Error('USAGE ERROR: can not update when profile is null')
       validateProfileCreate(payload)
