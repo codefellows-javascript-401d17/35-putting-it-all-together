@@ -4,7 +4,7 @@ import {Link, Redirect} from 'react-router-dom';
 import AuthForm from '../auth-form';
 import * as util from '../../lib/util.js';
 import {signupRequest, loginRequest} from '../../action/auth-actions.js';
-import {userProfileFetchRequest} from '../../action/profile-actions.js';
+import {profileFetchRequest} from '../../action/profile-actions.js';
 
 class LandingContainer extends React.Component {
   constructor(props) {
@@ -68,7 +68,7 @@ let mapDispatchToProps = (dispatch) => {
   return {
     signup: (user) => dispatch(signRequest(user)),
     login: (user) => dispatch(loginRequest(user)),
-    profileFetch: () => dispatch(userProfileFetchRequest()),
+    profileFetch: () => dispatch(profileFetchRequest()),
   }
 }
 
