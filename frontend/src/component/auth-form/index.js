@@ -3,6 +3,7 @@ import superagent from 'superagent'
 import {isEmail, isAlphanumeric, isAscii} from 'validator'
 import debounce from 'lodash/fp/debounce'
 
+import Tooltip from '../tooltip'
 import * as util from '../../lib/util.js'
 
 class AuthForm extends React.Component {
@@ -107,8 +108,8 @@ class AuthForm extends React.Component {
 
   usernameCheckAvailable(username){
     return superagent.get(`${__API_URL__}/usernames/${username}`)
-    .then(() => this.setState({usernameAvailable: true}))
-    .catch(() => this.setState({usernameAvailable: false}))
+    .then(() => this.setState({usernameAvailable: false}))
+    .catch(() => this.setState({usernameAvailable: true}))
   }
 
   handleSubmit(e){
@@ -156,6 +157,7 @@ class AuthForm extends React.Component {
         {util.renderIf(this.props.auth === 'signup',
           <div>
             <h2>signup.</h2>
+            <Tooltip message={emailError} show={focused === 'email' || submitted} />
             <input
               className={util.classToggler({error: emailError})}
               type='text'
@@ -175,6 +177,7 @@ class AuthForm extends React.Component {
           </div>
         )}
 
+        <Tooltip message={usernameError} show={focused === 'username' || submitted}/>
         <input
           className={util.classToggler({error: usernameError || !usernameAvailable})}
           type='text'
@@ -192,6 +195,7 @@ class AuthForm extends React.Component {
         )}
 
 
+        <Tooltip message={passwordError} show={ focused === 'password' || submitted}/>
         <input
           className={util.classToggler({passwordError})}
           type='password'
