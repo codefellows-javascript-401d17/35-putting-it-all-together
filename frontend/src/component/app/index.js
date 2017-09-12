@@ -1,10 +1,14 @@
+// import './_app.scss'
 import React from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
+
+import DashboardContainer from '../dashboard-container';
 import LandingContainer from '../landing-container';
 import SettingsContainer from '../settings-container';
 import * as util from '../../lib/util.js';
 import {tokenSet} from '../../action/auth-actions.js';
+import {profileFetchRequest} from '../../action/profile-actions.js'
 
 class App extends React.Component {
   componentDidMount() {
@@ -16,7 +20,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='sluggram'>
+      <div className='app'>
         <BrowserRouter>
           <section>
             <header>
@@ -26,11 +30,14 @@ class App extends React.Component {
                   <li><Link to='/welcome/signup'>signup</Link></li>
                   <li><Link to='/welcome/login'>login</Link></li>
                   <li><Link to='/settings'>settings</Link></li>
+                  <li><Link to='/dashboard'>dashboard</Link></li>
                 </ul>
               </nav>
             </header>
             <Route exact path='/welcome/:auth' component={LandingContainer} />
             <Route exact path='/settings' component={SettingsContainer} />
+            <Route exact path='/dashboard' component={DashboardContainer} />
+            <Route exact path='/' component={DashboardContainer} />
           </section>
         </BrowserRouter>
       </div>
@@ -43,7 +50,8 @@ let mapStateToProps = (state) => ({
 })
 
 let mapDispatchToProps =(dispatch) => ({
-  tokenSet: (token) => dispatch(tokenSet(token))
+  tokenSet: (token) => dispatch(tokenSet(token)),
+  profileFetchRequest: () => dispatch(profileFetchRequest())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

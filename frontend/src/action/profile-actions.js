@@ -20,3 +20,13 @@ export const profileCreateRequest = (profile) => (dispatch, getState) => {
     return res;
   })
 }
+
+export const profileFetchRequest = () => (dispatch, getState) => {
+  let {auth} = getState()
+  return superagent.get(`${__API_URL__}/profiles/me`)
+  .set('Authorization', `Bearer ${auth}`)
+  .then( res => {
+    dispatch(profileCreate(res.body))
+    return res
+  })
+}

@@ -106,7 +106,6 @@ Profile.delete = function(req){
   .then(profile => {
     if(!profile)
       throw createError(404, 'NOT FOUND ERROR: profile not found')
-    return util.s3DeletePhotoFromURL(profile.avatar)
   })
 }
 
