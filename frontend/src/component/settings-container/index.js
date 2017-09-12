@@ -11,10 +11,10 @@ class SettingsContainer extends React.Component {
 
   handleProfileCreate(profile) {
     return this.props.profileCreate(profile)
-    .then( res => {
-      console.log('profile create response:', res);
+    .then(() => {
+      this.props.history.push('/dashboard')
     })
-    .catch(console.error);
+    .catch(console.error)
   }
 
   //TODO:
@@ -22,15 +22,16 @@ class SettingsContainer extends React.Component {
 
   render() {
     let handleComplete = this.props.profile
-    ? this.handleProfileCreate
-    : this.handleProfileUpdate
+    ? this.handleProfileUpdate
+    : this.handleProfileCreate
 
     return (
       <div className='settings-container'>
         <h2> Profile Settings: </h2>
         <ProfileForm
+          profile={this.props.profile}
           buttonText='create profile'
-          onComplete={this.handleProfileCreate}
+          onComplete={handleComplete}
         />
       </div>
     )
@@ -42,7 +43,8 @@ let mapStateToProps = (state) => ({
 })
 
 let mapDispatchToProps = (dispatch) => ({
-  profileCreate: (profile) => dispatch(profileCreateRequest(profile))
+  profileCreate: (profile) => dispatch(profileCreateRequest(profile)),
+  profileUpdate: (profile) => dispatch(profileUpdateRequest(profile))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer);

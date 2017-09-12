@@ -21,6 +21,7 @@ class DashboardContainer extends React.Component {
     return (
       <div className='dashboard-container'>
         <h2>Dashboard</h2>
+        <p>Upload a photo:</p>
         <PhotoForm
           buttonText='post'
           onComplete={(photo) => {
@@ -28,7 +29,10 @@ class DashboardContainer extends React.Component {
             .catch(console.error);
           }}
         />
-        {console.log('__PROPS__', this.props)}
+        <p>Gallery:</p>
+        {this.props.photo.map(photo =>
+          <PhotoItem key={photo._id} photo={photo} />
+        )}
       </div>
     )
   }
@@ -36,7 +40,7 @@ class DashboardContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
   profile: state.profile,
-  photos: state.photos
+  photo: state.photo ? state.photo : []
 })
 
 let mapDispatchToProps = (dispatch) => ({

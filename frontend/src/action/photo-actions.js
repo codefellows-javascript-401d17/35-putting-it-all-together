@@ -32,6 +32,7 @@ export const photosFetchRequest = (photo) => (dispatch, getState) => {
 
 export const photoCreateRequest = (photo) => (dispatch, getState) => {
   let {auth} = getState();
+  console.log('state:', getState());
   return superagent.post(`${__API_URL__}/photos`)
   .set('Authorization', `Bearer ${auth}`)
   .field('description', photo.description)

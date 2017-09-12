@@ -4,7 +4,7 @@ import * as util from '../../lib/util.js'
 class PhotoForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = props.photos
+    this.state = props.photo
     ? props.photo
     : {description: '', preview: '', photo: null}
 
@@ -69,4 +69,4 @@ class PhotoForm extends React.Component {
   }
 }
 
-export default PhotoForm; 
+export default PhotoForm;

@@ -12,9 +12,10 @@ export const profileUpdate = (profile) => ({
 
 export const profileCreateRequest = (profile) => (dispatch, getState) => {
   let {auth} = getState();
-  return superagent.post(`${__API_URL__}/profile`)
+  return superagent.post(`${__API_URL__}/profiles`)
   .set('Authorization', `Bearer ${auth}`)
   .field('bio', profile.bio)
+  .attach('avatar', profile.avatar)
   .attach( res => {
     dispatch(dispatchCreate(res.body));
     return res;
@@ -27,6 +28,6 @@ export const profileFetchRequest = () => (dispatch, getState) => {
   .set('Authorization', `Bearer ${auth}`)
   .then( res => {
     dispatch(profileCreate(res.body))
-    return res
+    return res;
   })
 }
