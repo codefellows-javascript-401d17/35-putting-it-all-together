@@ -22,9 +22,9 @@ export const photoDelete = (photo) => ({
 })
 
 //superagent request actions (async)
-export const photosFetchRequest = (phoro) => (dispatch, getState) => {
+export const photosFetchRequest = (photo) => (dispatch, getState) => {
   let {auth} = getState()
-  return superagent.get(`${__API_URL__}/photos/me`)
+  return superagent.get(`${__API_URL__}/photos`)
   .set('Authorization', `Bearer ${auth}`)
   .then(res => {
     dispatch(photosSet(res.body.data))
