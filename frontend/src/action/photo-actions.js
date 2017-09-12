@@ -24,7 +24,8 @@ export const photoDelete = (photo) => ({
 //superagent request actions (async)
 export const photosFetchRequest = (photo) => (dispatch, getState) => {
   let {auth} = getState()
-  return superagent.get(`${__API_URL__}/photos`)
+  console.log('AUTH', auth);
+  return superagent.get(`${__API_URL__}/photos/me`)
   .set('Authorization', `Bearer ${auth}`)
   .then(res => {
     dispatch(photosSet(res.body.data))
