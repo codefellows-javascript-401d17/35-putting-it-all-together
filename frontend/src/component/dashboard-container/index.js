@@ -13,6 +13,7 @@ class DashboardContainer extends React.Component {
 
   componentDidMount(){
     this.props.photosFetch(()=> {
+      console.log('%%%%%%', photos);
     })
     .catch(util.logError)
   }
