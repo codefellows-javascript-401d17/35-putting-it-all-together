@@ -6,7 +6,8 @@ export const tokenSet = (token) => ({
 })
 
 export const tokenDelete = () => ({
-  type: 'TOKEN_DELETE'
+  type: 'TOKEN_DELETE',
+  payload: token,
 })
 
 export const signupRequest = (user) => (dispatch) => {
@@ -32,4 +33,10 @@ export const loginRequest = (user) => (dispatch) => {
     dispatch(tokenSet(res.text))
     return res;
   })
+}
+
+
+export const logout = () => {
+  util.deleteCookie('X-Sluggram-Token');
+  return { type: 'LOGOUT' }
 }
