@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import LandingContainer from '../landing-container';
 import SettingsContainer from '../settings-container';
 
-import * as util form '../../lib/util.js';
+import * as util from '../../lib/util.js';
 import { tokenSet } from '../../action/auth-actions.js';
 
 class App extends React.Component {
