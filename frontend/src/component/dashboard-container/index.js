@@ -12,11 +12,13 @@ class DashboardContainer extends React.Component {
   }
 
   componentDidMount(){
-    this.props.photosFetch()
+    this.props.photosFetch(()=> {
+    })
     .catch(util.logError)
   }
 
   render(){
+    console.log('IN RENDER', this.props.photos);
     return (
       <div className='dashboard-container'>
         <h2>dashboard</h2>
