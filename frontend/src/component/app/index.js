@@ -4,9 +4,9 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 import Navbar from '../navbar/index';
 import * as util from '../../lib/util';
-import LandingContainer from '../landing-container/index';
-import DashboardContainer from '../dashboard-container/index';
-import SettingsContainer from '../settings-container/index';
+import LandingContainer from '../landing-container';
+import DashboardContainer from '../dashboard-container';
+import SettingsContainer from '../settings-container';
 import {tokenSet} from '../../action/auth-actions';
 import {profileFetchRequest} from '../../action/profile-actions'
 
