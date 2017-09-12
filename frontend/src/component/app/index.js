@@ -2,11 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 
-import NavBar from '../navbar/index';
+import Navbar from '../navbar/index';
 import * as util from '../../lib/util';
 import LandingContainer from '../landing-container/index';
 import DashboardContainer from '../dashboard-container/index';
-import Settingscontainer from '../settings-container/index';
+import SettingsContainer from '../settings-container/index';
 import {tokenSet} from '../../action/auth-actions';
 import {profileFetchRequest} from '../../action/profile-actions'
 

@@ -31,7 +31,6 @@ export class PhotoItem extends React.Component {
     .catch(console.error)
   }
 
-
   render(){
     let {photo} = this.props
     return (

@@ -7,7 +7,7 @@ import Avatar from '../avatar/index';
 import {tokenSet} from '../../action/auth-actions';
 import * as util from '../../lib/util';
 import * as authActions from '../../action/auth-actions';
-import {profileFetchRequest} from ('../../action/profile-actions')
+import {profileFetchRequest} from '../../action/profile-actions';
 
 let NavLink = (props) => {
   <li className={util.classToggler({selected: props.url === `/${props.route}`})}>
