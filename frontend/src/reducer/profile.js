@@ -12,10 +12,10 @@ export default (state=null, action) => {
       validateProfileCreate(payload);
       return payload;
     case 'PROFILE_UPDATE':
-      return {...state, ...payload}
+      return {...state, ...payload};
     case 'LOGOUT':
-      return null
+      return null;
     default:
-      return state
+      return state;
   }
 }
