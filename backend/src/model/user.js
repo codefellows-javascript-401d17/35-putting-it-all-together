@@ -7,6 +7,7 @@ import * as jwt from 'jsonwebtoken'
 import createError from 'http-errors'
 import {promisify} from '../lib/util.js'
 import Mongoose, {Schema} from 'mongoose'
+import faker from 'faker'
 
 // SCHEMA
 const userSchema =  new Schema({
@@ -65,12 +66,14 @@ User.handleOAUTH = function(data) {
 
   return User.findOne({ email: data.email })
   .then( user => {
+    console.log('%%%%%%%%%%%%%%%%%%', user);
     if(!user) {
       throw new Error('not found - create a user');
     }
     return user;
   })
   .catch(() => {
+    console.log('___DATA___', data);
     return new User({
       username: faker.internet.userName(),
       email: data.email

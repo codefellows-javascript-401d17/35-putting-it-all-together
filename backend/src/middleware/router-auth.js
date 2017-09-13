@@ -5,12 +5,15 @@ import User from '../model/user.js'
 import parserBody from './parser-body.js'
 import {basicAuth} from './parser-auth.js'
 import {log, daysToMilliseconds} from '../lib/util.js'
+import superagent from 'superagent'
 
 export default new Router()
 .get('/oauth/google/code', (req, res, next) => {
+  console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
   if (!req.query.code) {
     res.redirect(process.env.CLIENT_URL);
   } else {
+    console.log('1111111111');
     superagent.post('https://www.googleapis.com/oauth2/v4/token')
     .type('form')
     .send({
@@ -21,21 +24,22 @@ export default new Router()
       redirect_uri: `${process.env.API_URL}/oauth/google/code`
     })
     .then(response => {
-      console.log('POST: oauth2/v4/token', response.body);
-      return superagent.get('https://www.googleapis.com/plus/v1/people/me/openIdConnect')
+      console.log('222222222');
+      return superagent.get('https://www.googleapis.com/plus.login/v1/people/me/openIdConnect')
       .set('Authorization', `Bearer ${response.body.access_token}`)
     })
     .then(response => {
-      console.log('GET: /people/me/openIdConnect', response.body);
+      console.log('333333333333', response.body);
       return User.handleOAUTH(response.body);
     })
     .then(user => user.tokenCreate())
     .then( token => {
-      console.log('my oauth token:', token);
+      console.log('4444444444444');
       res.cookie('X-Slugchat-Token', token);
       res.redirect(process.env.CLIENT_URL);
     })
     .catch((error) => {
+      console.log('555555555555555');
       console.error(error);
       res.redirect(process.env.CLIENT_URL);
     })

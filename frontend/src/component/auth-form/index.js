@@ -146,6 +146,14 @@ class AuthForm extends React.Component {
       usernameAvailable
     } = this.state
 
+    let AUTH_URL = 'https://accounts.google.com/o/oauth2/v2/auth';
+    let clientIDQuery = 'client_id=992654541300-hs25qc3ad12j4huiguqmuo74hmgksbqe.apps.googleusercontent.com';
+    let responseTypeQuery = 'response_type=code';
+    let scopeQuery = 'scope=openid%20profile%20email';
+    let promptQuery = 'prompt=consent';
+    let redirectURIQuery = 'redirect_uri=http://localhost:3000/oauth/google/code';
+
+    let formattedURI = `${AUTH_URL}?${clientIDQuery}&${responseTypeQuery}&${scopeQuery}&${promptQuery}&${redirectURIQuery}`
     return (
       <form
         onSubmit={this.handleSubmit}
@@ -174,6 +182,7 @@ class AuthForm extends React.Component {
         {util.renderIf(this.props.auth === 'login',
           <div>
             <h2>login.</h2>
+            <a href={formattedURI}>login with google</a>
           </div>
         )}
 
