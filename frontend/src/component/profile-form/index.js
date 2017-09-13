@@ -47,7 +47,7 @@ class ProfileForm extends React.Component {
         className='profile-form'
         onSubmit={this.handleSubmit}>
 
-        <img id='dropbox' src={this.state.preview} />
+        <img id='dropbox' src={this.state.preview||this.state.avatar} />
 
       <input
         type='file'
@@ -57,6 +57,7 @@ class ProfileForm extends React.Component {
       <textarea
         type='text'
         name='bio'
+        placeholder='tell us about yourself...'
         value={this.state.bio}
         onChange={this.handleChange}>
       </textarea>

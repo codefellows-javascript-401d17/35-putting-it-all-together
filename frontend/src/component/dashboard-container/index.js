@@ -12,7 +12,9 @@ class DashboardContainer extends React.Component {
   }
 
   componentDidMount(){
+    console.log('HEELLO', this.props.photos);
     this.props.photosFetch(()=> {
+      console.log('%%%%%%', photos);
     })
     .catch(util.logError)
   }
@@ -28,8 +30,8 @@ class DashboardContainer extends React.Component {
             return this.props.photoCreate(photo)
             .catch(console.error)
           }}
-            />
-          {this.props.photos.map(photo =>
+          />
+        {this.props.photos.map(photo =>
           <PhotoItem key={photo._id} photo={photo} />
         )}
       </div>
